@@ -55,7 +55,7 @@ export default function HomePage() {
         subtitle="Expert Solutions Ready"
         solutions={[
           "Our expert automation developers turn manual tasks into efficient, streamlined workflows.",
-          "Custom no-code solutions make complex integrations simple and stress-free."
+          "Custom no-code solutions make complex integrations simple and stress-free.",
           "Scalable automation systems grow seamlessly alongside your expanding business needs."
         ]}
         image={{
