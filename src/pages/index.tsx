@@ -42,11 +42,11 @@ export default function HomePage() {
       />
 
       <ProblemSection
-        title="Common Challenges Businesses Face"
+        title="Automation Struggles Stop Growth"
         problems={[
-          { icon: Users, title: "Limited Market Reach", description: "Struggling to connect with your target audience and expand your market presence." },
-          { icon: Shield, title: "Inconsistent Growth", description: "Facing unpredictable revenue patterns and difficulty in scaling operations." },
-          { icon: Zap, title: "Resource Optimization", description: "Challenges in maximizing ROI and efficiently utilizing available resources." }
+          { icon: Users, title: "Time Slips Away", description: "Manual tasks and repetitive processes drain countless hours that could be spent growing your business." },
+          { icon: Shield, title: "Technical Maze Confusion", description: "Complex automation tools and API integrations become overwhelming without specialized expertise." },
+          { icon: Zap, title: "Growth Hits Walls", description: "Manual workflows crumble under pressure as your business scales, creating bottlenecks that strangle growth." }
         ]}
       />
 
