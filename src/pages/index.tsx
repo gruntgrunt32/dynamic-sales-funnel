@@ -51,20 +51,20 @@ export default function HomePage() {
       />
 
       <SolutionSection
-        title="Our Comprehensive Solution"
-        subtitle="Tailored strategies for sustainable growth"
+        title="Automate and Scale Fast"
+        subtitle="Expert Solutions Ready"
         solutions={[
-          "Customized growth strategies tailored to your unique business needs and market position",
-          "Expert guidance from seasoned industry professionals with proven track records",
-          "Advanced data-driven decision making tools and analytics platforms"
+          "Our seasoned developers transform time-consuming manual tasks into streamlined automated workflows that save you 20+ hours per week.",
+          "Access our specialized no-code automation experts who turn complex technical challenges into simple, reliable solutions using N8N, Zapier, and Make.",
+          "Scale confidently with custom-built, production-ready automations that handle increasing workloads while maintaining peak efficiency."
         ]}
         image={{
           src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
           alt: "Business Solution"
         }}
         stats={{
-          value: "95%",
-          label: "Success Rate"
+          value: "93%",
+          label: "Client Efficiency Increase"
         }}
       />
 
