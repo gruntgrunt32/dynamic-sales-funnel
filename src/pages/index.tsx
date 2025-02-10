@@ -51,20 +51,20 @@ export default function HomePage() {
       />
 
       <SolutionSection
-        title="Automate and Scale Fast"
+        title="Automation That Powers Your Success"
         subtitle="Expert Solutions Ready"
         solutions={[
-          "Our seasoned developers transform time-consuming manual tasks into streamlined automated workflows that save you 20+ hours per week.",
-          "Access our specialized no-code automation experts who turn complex technical challenges into simple, reliable solutions using N8N, Zapier, and Make.",
-          "Scale confidently with custom-built, production-ready automations that handle increasing workloads while maintaining peak efficiency."
+          "Our expert automation developers turn manual tasks into efficient, streamlined workflows.",
+          "Custom no-code solutions make complex integrations simple and stress-free.
+          "Scalable automation systems grow seamlessly alongside your expanding business needs."
         ]}
         image={{
           src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
           alt: "Business Solution"
         }}
         stats={{
-          value: "93%",
-          label: "Client Efficiency Increase"
+          value: "85%",
+          label: "Average time saved through our custom automation solutions"
         }}
       />
 
