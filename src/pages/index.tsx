@@ -21,19 +21,19 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSection
-        title="Transform Your"
-        highlightedText="Business Growth"
-        subtitle="Unlock your company's full potential with our proven strategies and expert guidance. Join hundreds of successful businesses that have scaled with our methodology."
-        badgeText="Now offering free strategy sessions"
-        primaryButtonText="Schedule Free Consultation"
+        title="Transform Your Business with Expert No-Code Automation"
+        highlightedText="Stop wrestling with manual workflows. Start scaling smarter."
+        subtitle="Get professional automation development that saves you 20+ hours per week. Our experts build reliable, custom workflows using N8N, Zapier, and Make - without the enterprise price tag."
+        badgeText="Trusted Automation Experts"
+        primaryButtonText="Schedule Your Free Consultation"
         onButtonClick={scrollToCalendly}
         trustText={{
-          main: "Trusted by 500+ companies",
-          sub: "Across 25+ countries"
+          main: "Powering Business Growth Through Automation",
+          sub: "Expert developers specializing in N8N, Zapier, Make, and AI integration"
         }}
         stats={{
-          value: "+127%",
-          label: "Average Growth"
+          value: "20+",
+          label: "Hours Saved Weekly"
         }}
         heroImage={{
           src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
