@@ -21,11 +21,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSection
-        title="Transform Your Business with Expert No-Code Automation"
-        highlightedText="Stop wrestling with manual workflows. Start scaling smarter."
+        title="Automate Your"
+        highlightedText="Business Today"
         subtitle="Get professional automation development that saves you 20+ hours per week. Our experts build reliable, custom workflows using N8N, Zapier, and Make - without the enterprise price tag."
         badgeText="Trusted Automation Experts"
-        primaryButtonText="Schedule Your Free Consultation"
+        primaryButtonText="Get Started"
         onButtonClick={scrollToCalendly}
         trustText={{
           main: "Powering Business Growth Through Automation",
