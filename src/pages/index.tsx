@@ -80,34 +80,34 @@ export default function HomePage() {
       />
 
       <MarketChallengesSection
-        title="Market Challenges That Hold You Back"
-        subtitle="Understanding these critical market challenges is the first step toward overcoming them"
+        title="Manual Processes Are Killing Your Business Growth"
+        subtitle="Discover how these common automation challenges are limiting your success and draining your most valuable resource: time."
         challenges={[
           {
             icon: TrendingDown,
-            title: "Market Share Decline",
-            description: "Losing ground to competitors due to rapid market changes and evolving customer preferences.",
+            title: "Drowning in Repetitive Tasks",
+            description: "Valuable hours wasted on manual data entry and follow-ups prevent focus on strategic business growth.",
             stats: {
-              value: "32%",
-              label: "of businesses face market share decline annually"
+              value: "23%",
+              label: "of workweek spent on repetitive manual tasks"
             }
           },
           {
             icon: AlertTriangle,
-            title: "Customer Acquisition Costs",
-            description: "Skyrocketing costs of acquiring new customers in an increasingly competitive digital landscape.",
+            title: "Disconnected Systems Creating Chaos",
+            description: "Disjointed software tools create data silos and inefficiencies, leading to missed opportunities and frustrated teams.",
             stats: {
-              value: "61%",
-              label: "increase in CAC over the last 3 years"
+              value: "88%",
+              label: "of spreadsheets contain serious errors"
             }
           },
           {
             icon: DollarSign,
-            title: "Revenue Stagnation",
-            description: "Plateauing revenue growth despite increased marketing efforts and market opportunities.",
+            title: "Technical Barriers Block Progress",
+            description: "Limited expertise with automation platforms leads to costly mistakes and implementation delays.",
             stats: {
-              value: "45%",
-              label: "of businesses experience growth stagnation"
+              value: "67%",
+              label: "of SMBs struggle with technical integration"
             }
           }
         ]}
