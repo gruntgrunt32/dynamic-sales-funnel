@@ -125,31 +125,31 @@ export default function HomePage() {
       />
 
       <SocialProofSection
-        title="What Our Clients Say"
-        subtitle="Join hundreds of successful businesses that have transformed their growth with our expertise"
+        title="Real Results, Happy Clients, Zero Code"
+        subtitle="See how businesses cut manual work by 80% with our automation expertise"
         testimonials={[
           {
-            name: "Sarah Johnson",
-            role: "CEO, TechStart",
-            content: "The results we've seen since implementing their strategies have been remarkable. Our revenue grew by 156% in just 8 months, and we're still seeing consistent growth.",
+            name: "Sarah Chen",
+            role: "CEO, Digital First Marketing Agency",
+            content: "Horizon Dev automated our client onboarding, saving 15 hours weekly. Their N8N expertise transformed our workflow overnight.",
             image: {
               src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
               alt: "Sarah Johnson"
             }
           },
           {
-            name: "Michael Chen",
-            role: "Founder, GrowthX",
-            content: "Their expertise helped us double our revenue in just 6 months. The strategic guidance and hands-on support were exactly what we needed to scale effectively.",
+            name: "Mike Rodriguez",
+            role: "Operations Director, E-commerce Solutions",
+            content: "They integrated our CRM with Make.com, eliminating data silos. Sales follow-ups are now instant, boosting conversion rates 40%.",
             image: {
               src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
               alt: "Michael Chen"
             }
           },
           {
-            name: "Emma Davis",
-            role: "Director, InnovateNow",
-            content: "The best investment we've made for our business growth. Their team's dedication and expertise have transformed our approach to scaling our operations.",
+            name: "Jennifer Walsh",
+            role: "Founder, SaaS Platform",
+            content: "Their Zapier automations streamlined customer support workflows. Response times dropped from hours to minutes, delighting our clients.",
             image: {
               src: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=400&q=80",
               alt: "Emma Davis"
