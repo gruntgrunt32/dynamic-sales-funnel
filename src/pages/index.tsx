@@ -160,45 +160,36 @@ export default function HomePage() {
       />
 
       <FAQSection
-        title="Frequently Asked Questions"
-        subtitle="Find answers to common questions about our services"
-        backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80"
-        gradientColors={{
-          from: "blue-600",
-          to: "purple-600"
-        }}
-        decorativeColors={{
-          first: "bg-blue-200",
-          second: "bg-purple-200",
-          third: "bg-pink-200"
-        }}
+        title="Automation Solutions FAQ"
+        subtitle="Get answers about our expert no-code automation development services"
         faqs={[
           {
-            question: "How long does it take to see results?",
-            answer: "Most clients see initial results within 30-60 days, with significant improvements within 90 days. Our proven methodology is designed for both quick wins and sustainable long-term growth. We'll work with you to establish clear KPIs and milestones to track progress."
+            question: "How quickly can you implement automation solutions?",
+            answer: "Project timelines vary based on complexity, but we work on an hourly basis to deliver efficient solutions. Most automations can be implemented within days to weeks."
           },
           {
-            question: "What industries do you work with?",
-            answer: "We work with businesses across various sectors, including tech, retail, services, and manufacturing. Our strategies are adaptable and have proven successful across different industries. We have particular expertise in B2B, SaaS, e-commerce, and professional services."
+            question: "Which automation platforms do you work with?",
+            answer: "We specialize in N8N, Zapier, and Make platforms, creating custom automation solutions that integrate seamlessly with your existing business tools and workflows."
           },
           {
-            question: "What's the investment required?",
-            answer: "We offer flexible packages tailored to your business size and needs. Our pricing is transparent and based on the scope of services required. Most clients invest between $2,500 to $10,000 per month, with ROI typically achieved within the first quarter."
+            question: "Do I need technical knowledge to work with you?",
+            answer: "No technical expertise required. Our developers handle all technical aspects while you focus on your business goals and requirements."
           },
           {
-            question: "Do you offer ongoing support?",
-            answer: "Yes, we provide comprehensive ongoing support through dedicated account managers, regular strategy sessions, and real-time communication channels. Our team is always available to address concerns and optimize strategies as your business evolves."
+            question: "How do you ensure automation reliability and security?",
+            answer: "We implement robust error handling, monitoring systems, and security measures in every automation to ensure reliable, secure operation of your workflows."
           },
           {
-            question: "How do you measure success?",
-            answer: "We establish clear, measurable KPIs aligned with your business goals. These typically include revenue growth, market share, customer acquisition costs, and ROI. We provide detailed monthly reports and analytics dashboards to track progress transparently."
+            question: "What types of tasks can you automate?",
+            answer: "We automate various tasks including data entry, sales follow-ups, customer service responses, API integrations, and complex workflow processes across multiple platforms."
           },
           {
-            question: "Can you integrate with our existing systems?",
-            answer: "Absolutely. Our solutions are designed to integrate seamlessly with your existing tools and workflows. We conduct a thorough assessment of your current systems and ensure our strategies complement and enhance your existing operations."
+            question: "How do you handle system integration challenges?",
+            answer: "Our expert developers seamlessly connect different platforms and APIs, ensuring smooth data flow and communication between all your business tools."
           }
         ]}
       />
+
 
       <CalendlySection
         id="calendly-section"
