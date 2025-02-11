@@ -41,9 +41,11 @@ This project is optimized for **Vercel**. To deploy:
 3. Deploy with one click!
 
 ## 🤖 Automation Flow
+N8N Json flow is saved in the Github Repo under Dynamic_Sales_Funnel.JSON. Just import it and your good to go.
+
 1. **User inputs data** → Triggers n8n automation.
 2. **Dynamic funnel is created** → Hosted on Vercel instantly.
-3. N8N Json flow is saved in the Github Repo under Dynamic_Sales_Funnel.JSON
+
 
 ## 📝 Contributing
 Pull requests are welcome! If you have suggestions, open an issue or contribute directly.
