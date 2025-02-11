@@ -1,0 +1,846 @@
+{
+  "name": "Dynamic Sales Funnel",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Sales Funnel Generator",
+        "formDescription": "This form is to help dynamically create sales funnels.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "company name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "url",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "what are you selling",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "additional info",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "calendly link",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -180,
+        -140
+      ],
+      "id": "57e7bda5-f0c7-40d9-8935-a985b53a42b7",
+      "name": "On form submission",
+      "webhookId": "db1d693d-3941-4b1b-8bdf-8e98b39c2dc1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"highlightedText\": \"string\",\n  \"subtitle\": \"string\",\n  \"badgeText\": \"string\",\n  \"primaryButtonText\": \"string\",\n  \"trustText\": {\n    \"main\": \"string\",\n    \"sub\": \"string\"\n  },\n  \"stats\": {\n    \"value\": \"string\",\n    \"label\": \"string\"\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        80
+      ],
+      "id": "17d5e958-694c-44a4-9c16-bf3f9f8cebf3",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        80
+      ],
+      "id": "2efd671c-45a9-4fe3-90c7-3c9fdb9d9c4e",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your job is to generate the copy for the Hero section of a sales funnel. You will need to generate a compelling and persuasive headline, an engaging subtitle, and an enticing call-to-action that encourages users to take the next step. The copy should be clear, benefit-driven, and aligned with the target audience's needs.\n\nEnsure the tone is professional yet conversational, designed to build trust and excitement. Use social proof, urgency, or a unique value proposition to make the message compelling.\n\nThe title and highlighted text are THE same sentence and must be split. In total both of them combined must be less then 5 words.\n\nMake the CTA button less then 2 words. \n\nThe output format will be as follows:\n\n{\n  \"title\": \"string\",\n  \"highlightedText\": \"string\",\n  \"subtitle\": \"string\",\n  \"badgeText\": \"string\",\n  \"primaryButtonText\": \"string\",\n  \"trustText\": {\n    \"main\": \"string\",\n    \"sub\": \"string\"\n  },\n  \"stats\": {\n    \"value\": \"string\",\n    \"label\": \"string\"\n  }\n}\n\nHere is the company name:\n{{ $json['company name'] }}\n\nHere is the product they are selling\n{{ $json['what are you selling'] }}\n\nHere is some additional information about the product.\n{{ $json['additional info'] }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        40,
+        -140
+      ],
+      "id": "066dcc10-df58-4772-875b-5f82e0b1e5f2",
+      "name": "Hero Section"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"problems\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        580,
+        80
+      ],
+      "id": "343672a8-8a5b-4df3-972c-da22f986d2fe",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        420,
+        80
+      ],
+      "id": "1e54eead-4c00-487c-9707-1ef948fb653e",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate compelling copy for the Problem Section of a sales funnel. This section highlights the most pressing challenges businesses face given the products an pain points provided below.\n\nEach problem should have a concise, attention-grabbing title and a brief but impactful description that resonates with the target audience. \n\nThe problem sub titles should be max 3 words and their descriptions should be max 1 sentence in length. \n\nThe main title can be max 4 words.\n\nThe output format must be structured as follows:\n\n{\n  \"title\": \"string\",\n  \"problems\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}\n\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        400,
+        -140
+      ],
+      "id": "1e3e6567-0f6f-44d3-8d59-d6be08ee8814",
+      "name": "Problem Section"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate persuasive copy for the Solution Section of a sales funnel. This section follows the Problem Section, positioning the company’s product or service as the ultimate solution to the specific challenges previously highlighted.\n\nYou will be given three problems that businesses commonly face. Your job is to generate three corresponding solutions that directly address these problems in a clear, benefit-driven way.\n\nThe section should include:\n\nA strong, benefit-driven title that conveys transformation or success.\nA compelling subtitle reinforcing credibility and strategic value.\nA list of three solutions, each tailored to solve one of the three provided problems. Each solution should be concise, actionable, and highlight a key benefit.\nAn image reference that visually aligns with the message.\nA key statistic that builds trust and demonstrates effectiveness (e.g., success rate, revenue increase, time saved).\n\nThe solutions should only be 1 sentence in length with a maximum of 12 words.\n\nThe title needs to be less then 7 words.\n\nMake sure the stats is less then 3 words.\n\n\nThe output format must follow this structure:\n{\n  \"title\": \"string\",\n  \"solutions\": [\n    \"string\", // Solution to Problem 1\n    \"string\", // Solution to Problem 2\n    \"string\"  // Solution to Problem 3\n  ],\n  \"stats\": {\n    \"value\": \"string\",\n    \"label\": \"string\"\n  }\n}\n\n}\n\n\n\nHere is the business solution information\n{{ $('On form submission').item.json['what are you selling'] }}\n\n\nHere are the problems\n{{ JSON.stringify($json[\"output\"]) }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        760,
+        -140
+      ],
+      "id": "26940889-c0fa-46aa-a43c-0c2923f11515",
+      "name": "Solution Section"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"solutions\": [\n    \"string\",\n    \"string\",\n    \"string\"\n  ],\n  \"stats\": {\n    \"value\": \"string\",\n    \"label\": \"string\"\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        80
+      ],
+      "id": "e308a8c2-42b1-4dc7-877b-cd5031e1257f",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        780,
+        80
+      ],
+      "id": "9a300f1a-78f3-4c40-a13f-2260de37fd43",
+      "name": "Anthropic Chat Model2",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate compelling copy for a Mid-Page Call-to-Action (CTA) Section of a sales funnel. This section encourages users to take action by reinforcing the value of the product or service.\n\nThe section should include:\n\nA powerful, trust-building title that highlights social proof, credibility, or success.\nA persuasive subtitle that explains why businesses should take action, using clear benefits.\nA strong CTA button text that encourages users to move forward with an easy, low-commitment action.\nA CTA subtext that reduces hesitation (e.g., “No credit card required,” “Free to try”).\nA background image URL that visually reinforces the message.\n\nTitle should be max 5 words. Subtitle max 12 words. CTA Text less then 3. Subtext less then 5.\n\nThe output format must follow this structure:\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"ctaButton\": {\n    \"text\": \"string\",\n    \"subtext\": \"string\"\n  }\n}\n\n\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1120,
+        -140
+      ],
+      "id": "d7582dac-768c-4709-a5a1-47d0b148b445",
+      "name": "Midpage CTA"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"ctaButton\": {\n    \"text\": \"string\",\n    \"subtext\": \"string\"\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1300,
+        80
+      ],
+      "id": "7194dc79-3732-4aa6-a8cb-63297577a616",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        1140,
+        80
+      ],
+      "id": "0a0685fa-b3f5-4a67-b44d-6aa03e8526b2",
+      "name": "Anthropic Chat Model3",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate persuasive copy for the Market Challenges Section of a sales funnel. This section highlights key industry obstacles that businesses face, helping prospects recognize their struggles and the need for a solution.\n\nThe section should include:\n\nA strong, problem-awareness-driven title (max 29 charicters) that emphasizes common industry challenges.\nA compelling subtitle (max 20 words) that encourages the reader to acknowledge these challenges as the first step toward solving them.\nA list of three specific market challenges, each with:\nA concise, impactful title (max 6 words) describing the issue.\nA brief but clear description (max 20 words) explaining why it’s a problem and its business impact.\n\nTry not to say the same thing twice. We will provide the content that came before.\n\nThe output format must follow this structure:\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"challenges\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}\n\n\n\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}\n\n\nPrevious Content:\n{{ JSON.stringify($('Solution Section').item.json.output) }}\n{{ JSON.stringify($('Problem Section').item.json.output) }}\n{{ JSON.stringify($('Hero Section').item.json.output) }}\n\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1480,
+        -140
+      ],
+      "id": "c4003021-2ba4-48a7-b993-57f7748c23f2",
+      "name": "Market Challenge Section"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        1500,
+        80
+      ],
+      "id": "ac3137f7-fab2-4288-86dc-ebe4087e49b7",
+      "name": "Anthropic Chat Model4",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"challenges\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}\n\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1660,
+        80
+      ],
+      "id": "de8b9813-2c5e-47dc-b24c-45216460a8c3",
+      "name": "Structured Output Parser4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate persuasive copy for the Market Challenges Section of a sales funnel. This section highlights key industry obstacles that businesses face, helping prospects recognize their struggles and the need for a solution.\n\nThe section should include:\n\nA strong, problem-awareness-driven title (max 5 words) that emphasizes common industry challenges.\nA compelling subtitle (max 10 words) that encourages the reader to acknowledge these challenges as the first step toward solving them.\nA list of three specific market challenges, each with:\nA concise, impactful title (max 2 words) describing the issue.\nA brief but clear description (max 12 words) explaining why it’s a problem and its business impact.\n\n\n\nTry not to say the same thing twice. We will provide the content that came before.\n\n\nThe output format must follow this structure:\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"challenges\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}\n\n\nPrevious Content in json format:\n{{ JSON.stringify($('Market Challenge Section').item.json.output) }}\n{{ JSON.stringify($('Solution Section').item.json.output) }}\n{{ JSON.stringify($('Problem Section').item.json.output) }}\n{{ JSON.stringify($('Hero Section').item.json.output) }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1840,
+        -140
+      ],
+      "id": "573cbae5-c837-494a-b410-8d69a789a5f7",
+      "name": "Operational Issues Section"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"challenges\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    },    {\n      \"title\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2020,
+        80
+      ],
+      "id": "8b1138a1-9689-4006-816c-85b05f3ac4a1",
+      "name": "Structured Output Parser5"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        1860,
+        80
+      ],
+      "id": "443971e4-0c57-41e2-9b8b-a2500220c89e",
+      "name": "Anthropic Chat Model5",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"testimonials\": [\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    }\n  ]\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2380,
+        80
+      ],
+      "id": "7b92b84d-e78d-4e94-8c18-44d3cf2abf11",
+      "name": "Structured Output Parser6"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        2220,
+        80
+      ],
+      "id": "4ab24d95-3142-4761-93f7-d284c4c79bc4",
+      "name": "Anthropic Chat Model6",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate engaging and persuasive copy for a Social Proof Section of a sales funnel. This section builds trust by showcasing client success stories and real-world results achieved using the company's expertise.\n\nThe section should include:\n\nA compelling title (max 6 words) that conveys credibility and social proof.\nA persuasive subtitle (max 15 words) reinforcing the success of previous clients and encouraging trust.\nA list of three client testimonials, each containing:\nA client’s name (realistic but fictional, max 3 words).\nTheir role and company (max 6 words) establishing credibility.\nA testimonial content (max 30 words) describing their experience and measurable results (if available).\nThe output format must follow this structure:\n\n\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"testimonials\": [\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"content\": \"string\"\n    }\n  ]\n}\n\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2200,
+        -140
+      ],
+      "id": "460a7b4f-f622-4a4a-9b90-7bb28e018302",
+      "name": "Social Proof Section"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate clear and informative FAQ content for a Frequently Asked Questions (FAQ) Section of a sales funnel. This section helps address potential customer concerns, build trust, and clarify key details about the product or service.\n\nThe section should include:\n\nA concise title (max 5 words) that clearly indicates the section’s purpose.\nA short subtitle (max 12 words) reassuring users that they’ll find useful answers.\nA list of six FAQs, each containing:\nA clear, commonly asked question (max 12 words) that potential customers might have.\nA detailed yet concise answer (max 40 words) providing clarity, reassurance, or actionable insights.\nThe output format must follow this structure:\n\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"faqs\": [\n    {\n      \"question\": \"string\",\n      \"answer\": \"string\"\n    }\n  ]\n}\n\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2560,
+        -140
+      ],
+      "id": "41081adf-5275-4fa1-8fcb-e8df9484a845",
+      "name": "FAQ Section"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"faqs\": [\n    {\n      \"question\": \"string\",\n      \"answer\": \"string\"\n    }\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2740,
+        80
+      ],
+      "id": "1d608aea-fad8-4d65-ab29-9e659d1733cd",
+      "name": "Structured Output Parser7"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        2580,
+        80
+      ],
+      "id": "46a88c8e-33de-4bf6-9b50-5b3329d16f40",
+      "name": "Anthropic Chat Model7",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Your task is to generate engaging and persuasive copy for a Calendly Scheduling Section in a sales funnel. This section encourages potential clients to book a free consultation, emphasizing ease, value, and expertise.\n\nThe section should include:\n\nA compelling, action-oriented title (max 6 words) that urges users to schedule a call.\nA persuasive subtitle (max 15 words) explaining why the consultation is valuable.\nA badge text (max 5 words) reinforcing that the call is free and beneficial.\n\n\nThe output will be in the following structure.\n\n\n{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"badgeText\": \"string\"\n  \n}\n\nCompany Name:\n{{ $node[\"On form submission\"].json[\"company name\"] }}\n\nProduct Being Sold:\n{{ $node[\"On form submission\"].json[\"what are you selling\"] }}\n\nAdditional Information About the Product:\n{{ $node[\"On form submission\"].json[\"additional info\"] }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2920,
+        -140
+      ],
+      "id": "4a163652-3fea-449b-9f59-7bcb5c8d1157",
+      "name": "Calendly Section"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"subtitle\": \"string\",\n  \"badgeText\": \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        3100,
+        80
+      ],
+      "id": "83f6f127-69a7-4bf0-99b1-8a31e9af3bcb",
+      "name": "Structured Output Parser8"
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        2940,
+        80
+      ],
+      "id": "670da839-b667-417d-98ca-0b5ca0904cda",
+      "name": "Anthropic Chat Model8",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GG7fIgrFoJlEJotS",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "gruntgrunt32",
+          "mode": "list",
+          "cachedResultName": "gruntgrunt32",
+          "cachedResultUrl": "https://github.com/gruntgrunt32"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "dynamic-sales-funnel",
+          "mode": "list",
+          "cachedResultName": "dynamic-sales-funnel",
+          "cachedResultUrl": "https://github.com/gruntgrunt32/dynamic-sales-funnel"
+        },
+        "filePath": "=src/pages/{{ $('On form submission').item.json.url }}.tsx",
+        "fileContent": "=import React from 'react';\nimport { Users, Shield, Zap, BarChart, Clock, Trophy, TrendingDown, AlertTriangle, DollarSign, Ban, Target, Calendar } from 'lucide-react';\nimport { HeroSection } from '../components/HeroSection';\nimport { ProblemSection } from '../components/ProblemSection';\nimport { SolutionSection } from '../components/SolutionSection';\nimport { MidPageCTA } from '../components/MidPageCTA';\nimport { MarketChallengesSection } from '../components/MarketChallengesSection';\nimport { OperationalIssuesSection } from '../components/OperationalIssuesSection';\nimport { SocialProofSection } from '../components/SocialProofSection';\nimport { FAQSection } from '../components/FAQSection';\nimport { CalendlySection } from '../components/CalendlySection';\n\nexport default function HomePage() {\n  const scrollToCalendly = () => {\n    const element = document.getElementById('calendly-section');\n    if (element) {\n      element.scrollIntoView({ behavior: 'smooth' });\n    }\n  };\n\n  return (\n    <div className=\"min-h-screen bg-white\">\n      <HeroSection\n        title=\"{{ $('Hero Section').item.json.output.title }}\"\n        highlightedText=\"{{ $('Hero Section').item.json.output.highlightedText }}\"\n        subtitle=\"{{ $('Hero Section').item.json.output.subtitle }}\"\n        badgeText=\"{{ $('Hero Section').item.json.output.badgeText }}\"\n        primaryButtonText=\"{{ $('Hero Section').item.json.output.primaryButtonText }}\"\n        onButtonClick={scrollToCalendly}\n        trustText={{ `{{main: \"` }}{{ $('Hero Section').item.json.output.trustText.main }}\", sub: \"{{ $('Hero Section').item.json.output.trustText.sub }}\"{{ `\\}\\}`}}{{ `stats={{ value: \"` }}{{ $('Hero Section').item.json.output.stats.value }}\", label: \"{{ $('Hero Section').item.json.output.stats.label }}\"}}\n\n\n        heroImage={{ `{{` }}\n          src: \"https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80\",\n          alt: \"Business Growth\"\n        }}\n      />\n\n      <ProblemSection\n        title=\"{{ $('Problem Section').item.json.output.title }}\"\n        problems={[\n          { icon: Users, title: \"{{ $('Problem Section').item.json.output.problems[0].title }}\", description: \"{{ $('Problem Section').item.json.output.problems[0].description }}\" },\n          { icon: Shield, title: \"{{ $('Problem Section').item.json.output.problems[1].title }}\", description: \"{{ $('Problem Section').item.json.output.problems[1].description }}\" },\n          { icon: Zap, title: \"{{ $('Problem Section').item.json.output.problems[2].title }}\", description: \"{{ $('Problem Section').item.json.output.problems[2].description }}\" }\n        ]}\n      />\n\n      <SolutionSection\n        title=\"{{ $('Solution Section').item.json.output.title }}\"\n        solutions={[\n          \"{{ $('Solution Section').item.json.output.solutions[0] }}\",\n          \"{{ $('Solution Section').item.json.output.solutions[1] }}\",\n          \"{{ $('Solution Section').item.json.output.solutions[2] }}\"\n        ]}\n\n        image={{ `{{` }}\n          src: \"https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80\",\n          alt: \"Business Solution\"\n        }}\n        stats={{ `{{` }}\n          value: \"{{ $('Solution Section').item.json.output.stats.value }}\",\n          label: \"{{ $('Solution Section').item.json.output.stats.label }}\"\n        }}\n      />\n\n      <MidPageCTA\n        title=\"{{ $('Midpage CTA').item.json.output.title }}\"\n        subtitle=\"{{ $('Midpage CTA').item.json.output.subtitle }}\"\n        ctaButton={{ `{{` }}\n          text: \"{{ $('Midpage CTA').item.json.output.ctaButton.text }}\",\n          subtext: \"{{ $('Midpage CTA').item.json.output.subtitle }}\"\n        }}\n        onButtonClick={scrollToCalendly}\n        backgroundImage=\"https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=80\"\n      />\n\n      <MarketChallengesSection\n        title=\"{{ $('Market Challenge Section').item.json.output.title }}\"\n        subtitle=\"{{ $('Market Challenge Section').item.json.output.subtitle }}\"\n        challenges={[\n          {\n            icon: TrendingDown,\n            title: \"{{ $('Market Challenge Section').item.json.output.challenges[0].title }}\",\n            description: \"{{ $('Market Challenge Section').item.json.output.challenges[0].description }}\"\n          },\n          {\n            icon: AlertTriangle,\n            title: \"{{ $('Market Challenge Section').item.json.output.challenges[1].title }}\",\n            description: \"{{ $('Market Challenge Section').item.json.output.challenges[1].description }}\"\n          },\n          {\n            icon: DollarSign,\n            title: \"{{ $('Market Challenge Section').item.json.output.challenges[2].title }}\",\n            description: \"{{ $('Market Challenge Section').item.json.output.challenges[2].description }}\"\n          }\n        ]}\n        backgroundImage=\"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80\"\n      />\n\n      <OperationalIssuesSection\n        title=\"{{ $('Operational Issues Section').item.json.output.title }}\"\n        subtitle=\"{{ $('Operational Issues Section').item.json.output.subtitle }}\"\n        issues={[\n          {\n            icon: Clock,\n            title: \"{{ $('Operational Issues Section').item.json.output.challenges[0].title }}\",\n            description: \"{{ $('Operational Issues Section').item.json.output.challenges[0].description }}\"\n          },\n          {\n            icon: Ban,\n            title: \"{{ $('Operational Issues Section').item.json.output.challenges[1].title }}\",\n            description: \"{{ $('Operational Issues Section').item.json.output.challenges[1].description }}\"\n          },\n          {\n            icon: Target,\n            title: \"{{ $('Operational Issues Section').item.json.output.challenges[2].title }}\",\n            description: \"{{ $('Operational Issues Section').item.json.output.challenges[2].impact }}\"\n          }\n        ]}\n      />\n\n      <SocialProofSection\n        title=\"{{ $('Social Proof Section').item.json.output.title }}\"\n        subtitle=\"{{ $('Social Proof Section').item.json.output.subtitle }}\"\n        testimonials={[\n          {\n            name: \"{{ $('Social Proof Section').item.json.output.testimonials[0].name }}\",\n            role: \"{{ $('Social Proof Section').item.json.output.testimonials[0].role }}\",\n            content: \"{{ $('Social Proof Section').item.json.output.testimonials[0].content }}\",\n            image: {\n              src: \"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80\",\n              alt: \"{{ $('Social Proof Section').item.json.output.testimonials[0].name }}\"\n            }\n          },\n          {\n            name: \"{{ $('Social Proof Section').item.json.output.testimonials[1].name }}\",\n            role: \"{{ $('Social Proof Section').item.json.output.testimonials[1].role }}\",\ncontent: \"{{ $('Social Proof Section').item.json.output.testimonials[2].content }}\",\n            image: {\n              src: \"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80\",\n              alt: \"{{ $('Social Proof Section').item.json.output.testimonials[1].name }}\"\n            }\n          },\n          {\n            name: \"{{ $('Social Proof Section').item.json.output.testimonials[2].name }}\",\n            role: \"{{ $('Social Proof Section').item.json.output.testimonials[2].role }}\",\n            content: \"{{ $('Social Proof Section').item.json.output.testimonials[2].content }}\",\n            image: {\n              src: \"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=400&q=80\",\n              alt: \"{{ $('Social Proof Section').item.json.output.testimonials[2].name }}\"\n            }\n          }\n        ]}\n        backgroundImage=\"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80\"\n      />\n\n      <FAQSection\n        title=\"{{ $('FAQ Section').item.json.output.title }}\"\n        subtitle=\"{{ $('FAQ Section').item.json.output.subtitle }}\"\n        backgroundImage=\"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80\"\n        gradientColors={{ `{{` }}\n          from: \"blue-600\",\n          to: \"purple-600\"\n        }}\n        decorativeColors={{ `{{` }}\n          first: \"bg-blue-200\",\n          second: \"bg-purple-200\",\n          third: \"bg-pink-200\"\n        }}\n        faqs={[\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[0].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[0].answer }}\"\n          },\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[1].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[1].answer }}\"\n          },\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[2].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[2].answer }}\"\n          },\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[3].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[3].answer }}\"\n          },\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[4].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[4].answer }}\"\n          },\n          {\n            question: \"{{ $('FAQ Section').item.json.output.faqs[5].question }}\",\n            answer: \"{{ $('FAQ Section').item.json.output.faqs[5].answer }}\"\n          }\n        ]}\n      />\n\n      <CalendlySection\n        id=\"calendly-section\"\n        title=\"{{ $json.output.title }}\"\n        subtitle=\"{{ $json.output.subtitle }}\"\n        badgeIcon={Clock}\n        badgeText=\"{{ $json.output.badgeText }}\"\n        features={[\n          {\n            icon: Calendar,\n            title: \"Flexible Scheduling\",\n            description: \"Choose a time that works best for you\"\n          },\n          {\n            icon: Clock,\n            title: \"15-Minute Session\",\n            description: \"Focused discussion on your business needs\"\n          },\n          {\n            icon: Users,\n            title: \"Expert Consultation\",\n            description: \"Meet with our senior growth strategist\"\n          }\n        ]}\n        calendlyUrl=\"{{ $('On form submission').item.json['calendly link'] }}\"\n        backgroundImage=\"https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80\"\n      />\n    </div>\n  );\n}",
+        "commitMessage": "New Page"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        -140
+      ],
+      "id": "42d8669f-2706-4af7-92c9-2249161563dc",
+      "name": "GitHub",
+      "credentials": {
+        "githubApi": {
+          "id": "jmgNZl4MlmlvzyVl",
+          "name": "Dynamic Sales Funnel"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Hero Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Hero Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Hero Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hero Section": {
+      "main": [
+        [
+          {
+            "node": "Problem Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Problem Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Problem Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Problem Section": {
+      "main": [
+        [
+          {
+            "node": "Solution Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Solution Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Solution Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Solution Section": {
+      "main": [
+        [
+          {
+            "node": "Midpage CTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Midpage CTA",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Midpage CTA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Midpage CTA": {
+      "main": [
+        [
+          {
+            "node": "Market Challenge Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Market Challenge Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser4": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Market Challenge Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Market Challenge Section": {
+      "main": [
+        [
+          {
+            "node": "Operational Issues Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser5": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Operational Issues Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Operational Issues Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Operational Issues Section": {
+      "main": [
+        [
+          {
+            "node": "Social Proof Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser6": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Social Proof Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Social Proof Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Proof Section": {
+      "main": [
+        [
+          {
+            "node": "FAQ Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser7": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "FAQ Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "FAQ Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ Section": {
+      "main": [
+        [
+          {
+            "node": "Calendly Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser8": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Calendly Section",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calendly Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendly Section": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c86124b2-9e2c-492c-a7e9-4595abc86bc8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "298a9cd5b97e61f0563797424b79b782b8bdb913bef9064df728c79ba89e1589"
+  },
+  "id": "WzfbwUS7J0wKtfL9",
+  "tags": []
+}
