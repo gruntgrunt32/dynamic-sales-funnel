@@ -202,10 +202,10 @@ export default function HomePage() {
 
       <CalendlySection
         id="calendly-section"
-        title="Ready to Transform Your Business?"
-        subtitle="Schedule your free consultation today and let's discuss your growth strategy."
+        title="Transform Your Business With Automation"
+        subtitle="Discover how our automation expertise can save your business 20+ hours weekly"
         badgeIcon={Clock}
-        badgeText="Book your free consultation"
+        badgeText="Free Strategy Session"
         features={[
           {
             icon: Calendar,
@@ -214,7 +214,7 @@ export default function HomePage() {
           },
           {
             icon: Clock,
-            title: "30-Minute Session",
+            title: "15-Minute Session",
             description: "Focused discussion on your business needs"
           },
           {
@@ -223,7 +223,7 @@ export default function HomePage() {
             description: "Meet with our senior growth strategist"
           }
         ]}
-        calendlyUrl="https://calendly.com/your-calendar-url"
+        calendlyUrl="https://calendly.com/austinnreed/n8n"
         backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80"
       />
     </div>
