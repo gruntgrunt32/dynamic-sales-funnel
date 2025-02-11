@@ -86,29 +86,18 @@ export default function HomePage() {
           {
             icon: TrendingDown,
             title: "Drowning in Repetitive Tasks",
-            description: "Valuable hours wasted on manual data entry and follow-ups prevent focus on strategic business growth.",
-            stats: {
-              value: "23%",
-              label: "of workweek spent on repetitive manual tasks"
-            }
+            description: "Valuable hours wasted on manual data entry and follow-ups prevent focus on strategic business growth."
+           
           },
           {
             icon: AlertTriangle,
             title: "Disconnected Systems Creating Chaos",
-            description: "Disjointed software tools create data silos and inefficiencies, leading to missed opportunities and frustrated teams.",
-            stats: {
-              value: "88%",
-              label: "of spreadsheets contain serious errors"
-            }
+            description: "Disjointed software tools create data silos and inefficiencies, leading to missed opportunities and frustrated teams."
           },
           {
             icon: DollarSign,
             title: "Technical Barriers Block Progress",
-            description: "Limited expertise with automation platforms leads to costly mistakes and implementation delays.",
-            stats: {
-              value: "67%",
-              label: "of SMBs struggle with technical integration"
-            }
+            description: "Limited expertise with automation platforms leads to costly mistakes and implementation delays."
           }
         ]}
         backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80"
@@ -121,20 +110,17 @@ export default function HomePage() {
           {
             icon: Clock,
             title: "Integration Complexity",
-            description: "Modern businesses require multiple tools working together seamlessly to succeed",
-            impact: "73% of companies struggle with software integration challenges"
+            description: "Modern businesses require multiple tools working together seamlessly to succeed"
           },
           {
             icon: Ban,
             title: "Security Risks",
-            description: "Manual processes and improper automation create dangerous compliance vulnerabilities",
-            impact: "91% of businesses experienced data breaches from poor system integration"
+            description: "Manual processes and improper automation create dangerous compliance vulnerabilities"
           },
           {
             icon: Target,
             title: "Knowledge Gap",
-            description: "Identifying high-impact automation opportunities requires specialized expertise",
-            impact: "67% of businesses don't know which processes to automate first"
+            description: "Identifying high-impact automation opportunities requires specialized expertise"
           }
         ]}
       />

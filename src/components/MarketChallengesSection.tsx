@@ -5,10 +5,6 @@ interface Challenge {
   icon: LucideIcon;
   title: string;
   description: string;
-  stats?: {
-    value: string;
-    label: string;
-  };
 }
 
 interface MarketChallengesSectionProps {
@@ -68,12 +64,6 @@ export function MarketChallengesSection({
                 </div>
                 <h3 className={`text-xl font-bold mb-4 ${theme.textColor}`}>{challenge.title}</h3>
                 <p className={theme.subtitleColor}>{challenge.description}</p>
-                {challenge.stats && (
-                  <div className="pt-6 border-t border-white/10">
-                    <div className={`text-2xl font-bold ${theme.statColor}`}>{challenge.stats.value}</div>
-                    <div className={`text-sm ${theme.subtitleColor}`}>{challenge.stats.label}</div>
-                  </div>
-                )}
               </div>
             );
           })}

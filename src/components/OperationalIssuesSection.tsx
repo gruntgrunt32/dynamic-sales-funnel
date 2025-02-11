@@ -34,7 +34,6 @@ interface OperationalIssuesSectionProps {
 export function OperationalIssuesSection({
   title,
   subtitle,
-  issues,
   badgeText = "Critical Business Insights",
   theme = {
     badge: {
@@ -48,8 +47,7 @@ export function OperationalIssuesSection({
       iconBg: "bg-gray-900",
       iconColor: "text-white",
       titleColor: "text-gray-900",
-      textColor: "text-gray-600",
-      impactColor: "text-gray-900"
+      textColor: "text-gray-600"
     }
   }
 }: OperationalIssuesSectionProps) {
@@ -84,17 +82,7 @@ export function OperationalIssuesSection({
                   <h3 className={`text-xl font-bold mb-4 ${theme.card.titleColor}`}>{issue.title}</h3>
                   <p className={`${theme.card.textColor} mb-4`}>{issue.description}</p>
                   
-                  {issue.impact && (
-                    <div className="pt-4 mt-4 border-t border-gray-200">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-gray-900" />
-                        <p className="text-sm font-medium">
-                          <span className={theme.card.impactColor}>Impact: </span>
-                          <span className={theme.card.textColor}>{issue.impact}</span>
-                        </p>
-                      </div>
-                    </div>
-                  )}
+          
                 </div>
               </div>
             );
