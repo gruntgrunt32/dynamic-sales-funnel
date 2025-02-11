@@ -115,26 +115,26 @@ export default function HomePage() {
       />
 
       <OperationalIssuesSection
-        title="Operational Bottlenecks"
-        subtitle="Internal challenges that prevent your business from reaching its full potential"
+        title="Technical Expertise Gap Widens"
+        subtitle="See why businesses struggle to implement effective automation solutions"
         issues={[
           {
             icon: Clock,
-            title: "Process Inefficiencies",
-            description: "Time-consuming manual processes and workflows that drain resources and slow down operations.",
-            impact: "Average 23 hours per week lost to inefficient processes"
+            title: "Integration Complexity",
+            description: "Modern businesses require multiple tools working together seamlessly to succeed",
+            impact: "73% of companies struggle with software integration challenges"
           },
           {
             icon: Ban,
-            title: "Resource Underutilization",
-            description: "Poor allocation and management of available resources, leading to decreased productivity.",
-            impact: "Up to 40% of business resources are underutilized"
+            title: "Security Risks",
+            description: "Manual processes and improper automation create dangerous compliance vulnerabilities",
+            impact: "91% of businesses experienced data breaches from poor system integration"
           },
           {
             icon: Target,
-            title: "Scaling Limitations",
-            description: "Infrastructure and operational constraints that prevent effective business scaling.",
-            impact: "67% of businesses fail to scale due to operational limitations"
+            title: "Knowledge Gap",
+            description: "Identifying high-impact automation opportunities requires specialized expertise",
+            impact: "67% of businesses don't know which processes to automate first"
           }
         ]}
       />
