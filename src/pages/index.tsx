@@ -69,10 +69,10 @@ export default function HomePage() {
       />
 
       <MidPageCTA
-        title="Join 500+ Growing Companies"
-        subtitle="Our clients have achieved remarkable results through our proven growth strategies"
+        title="Trusted By Growing Businesses"
+        subtitle="Save 20+ hours weekly with custom automation solutions"
         ctaButton={{
-          text: "Start Your Growth Journey",
+          text: "Get Started",
           subtext: "No commitment required"
         }}
         onButtonClick={scrollToCalendly}
