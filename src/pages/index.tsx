@@ -162,6 +162,16 @@ export default function HomePage() {
       <FAQSection
         title="Automation Solutions FAQ"
         subtitle="Get answers about our expert no-code automation development services"
+        backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80"
+        gradientColors={{
+          from: "blue-600",
+          to: "purple-600"
+        }}
+        decorativeColors={{
+          first: "bg-blue-200",
+          second: "bg-purple-200",
+          third: "bg-pink-200"
+        }}
         faqs={[
           {
             question: "How quickly can you implement automation solutions?",
@@ -189,7 +199,6 @@ export default function HomePage() {
           }
         ]}
       />
-
 
       <CalendlySection
         id="calendly-section"
