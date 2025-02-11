@@ -8,10 +8,8 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: {
-        main: 'index.html',
-        routes: 'src/pages/**/*.tsx' // Ensures all pages are included in the build
-      }
+      // No need to specify `src/pages/**/*.tsx`, Vite will automatically include them
+      input: 'index.html'
     }
   },
   server: {
