@@ -5,7 +5,7 @@
 This project was built using **Vite** for high-performance frontend development.
 
 ## 📺 YouTube Video
-Check out the full tutorial on how this works on my [YouTube channel](https://www.youtube.com/@horizonsoftwaredev) 
+Check out the full tutorial on how this works on my [YouTube channel](https://youtu.be/gIY1BdOf7oE) 
 
 ## 🛠️ Tech Stack
 - **Vite** - Fast and modern frontend tooling
